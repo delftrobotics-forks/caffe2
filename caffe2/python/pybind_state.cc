@@ -76,7 +76,8 @@ int CaffeToNumpyType(const TypeMeta& meta) {
       {TypeMeta::Id<int64_t>(), NPY_LONGLONG},
       {TypeMeta::Id<uint8_t>(), NPY_UINT8},
       {TypeMeta::Id<uint16_t>(), NPY_UINT16},
-      {TypeMeta::Id<std::string>(), NPY_OBJECT},
+      {TypeMeta::Id<std::vector<uint8_t>>(), NPY_OBJECT},
+      {TypeMeta::Id<std::string>(), NPY_UNICODE},
       // Note: Add more types here.
   };
   const auto it = numpy_type_map.find(meta.id());
@@ -99,7 +100,8 @@ const TypeMeta& NumpyTypeToCaffe(int numpy_type) {
       {NPY_LONGLONG, TypeMeta::Make<int64_t>()},
       {NPY_UINT8, TypeMeta::Make<uint8_t>()},
       {NPY_UINT16, TypeMeta::Make<uint16_t>()},
-      {NPY_OBJECT, TypeMeta::Make<std::string>()},
+      {NPY_OBJECT, TypeMeta::Make<std::vector<uint8_t>>()},
+      {NPY_UNICODE, TypeMeta::Make<std::string>()},
       // Note: Add more types here.
   };
   static TypeMeta unknown_type;
